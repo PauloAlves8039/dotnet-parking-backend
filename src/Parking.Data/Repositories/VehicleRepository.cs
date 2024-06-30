@@ -3,10 +3,9 @@ using Parking.Data.Context;
 using Parking.Model.Interfaces;
 using Parking.Model.Models;
 
-namespace Parking.Data.Repositories
+namespace Parking.Data.Repositories;
+
+public class VehicleRepository : Repository<Vehicle>, IVehicleRepository
 {
-    public class VehicleRepository : Repository<Vehicle>, IVehicleRepository
-    {
-        public VehicleRepository(ApplicationDbContext context, ILogger<Vehicle> logger) : base(context, logger) { }
-    }
+    public VehicleRepository(ApplicationDbContext context, ILogger<Vehicle> logger) : base(context, logger) { }
 }

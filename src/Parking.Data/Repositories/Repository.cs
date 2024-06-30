@@ -3,97 +3,97 @@ using Microsoft.Extensions.Logging;
 using Parking.Data.Context;
 using Parking.Model.Interfaces;
 
-namespace Parking.Data.Repositories
+namespace Parking.Data.Repositories;
+
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    protected readonly ApplicationDbContext _context;
+    protected readonly ILogger<TEntity> _logger;
+    protected string _errorMessage = "";
+
+    public Repository(ApplicationDbContext context, ILogger<TEntity> logger)
     {
-        protected readonly ApplicationDbContext _context;
-        protected readonly ILogger<TEntity> _logger;
-        protected string _errorMessage = "";
+        _context = context;
+        _logger = logger;
+    }
 
-        public Repository(ApplicationDbContext context, ILogger<TEntity> logger)
+    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+    {
+        try
         {
-            _context = context;
-            _logger = logger;
+            return await _context.Set<TEntity>().ToListAsync();
         }
-
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+        catch (Exception exception)
         {
-            try
-            {
-                return await _context.Set<TEntity>().ToListAsync();
-            }
-            catch (Exception exception)
-            {
-                _errorMessage = $"Error when searching list of records: {exception.Message}";
-                _logger.LogError(exception, _errorMessage);
-                throw;
-            }
+            _errorMessage = $"Error when searching list of records: {exception.Message}";
+            _logger.LogError(exception, _errorMessage);
+            throw;
         }
+    }
 
-        public virtual async Task<TEntity> GetByIdAsync(int id)
+    public virtual async Task<TEntity> GetByIdAsync(int id)
+    {
+        try
         {
-            try
-            {
-                return await _context.Set<TEntity>().FindAsync(id);
-            }
-            catch (Exception exception)
-            {
-                _errorMessage = $"Error getting record with ID: {exception.Message}";
-                _logger.LogError(exception, _errorMessage);
-                throw;
-            }
+            return await _context.Set<TEntity>().FindAsync(id);
         }
-
-        public virtual async Task<TEntity> AddAsync(TEntity entity)
+        catch (Exception exception)
         {
-            try
+            _errorMessage = $"Error getting record with ID: {exception.Message}";
+            _logger.LogError(exception, _errorMessage);
+            throw;
+        }
+    }
+
+    public virtual async Task<TEntity> AddAsync(TEntity entity)
+    {
+        try
+        {
+            _context.Set<TEntity>().Add(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        catch (Exception exception)
+        {
+            _errorMessage = $"Error when adding a new record: {exception.Message}";
+            _logger.LogError(exception, _errorMessage);
+            throw;
+        }
+    }
+
+    public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+    {
+        try
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+        catch (Exception exception)
+        {
+            _errorMessage = $"Error when updating the record: {exception.Message}";
+            _logger.LogError(exception, _errorMessage);
+            throw;
+        }
+    }
+
+    public virtual async Task DeleteAsync(int id)
+    {
+        try
+        {
+            var entity = await _context.Set<TEntity>().FindAsync(id);
+
+            if (entity != null)
             {
-                _context.Set<TEntity>().Add(entity);
+                _context.Set<TEntity>().Remove(entity);
                 await _context.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception exception)
-            {
-                _errorMessage = $"Error when adding a new record: {exception.Message}";
-                _logger.LogError(exception, _errorMessage);
-                throw;
             }
         }
-
-        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
+        catch (Exception exception)
         {
-            try
-            {
-                _context.Entry(entity).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
-                return entity;
-            }
-            catch (Exception exception)
-            {
-                _errorMessage = $"Error when updating the record: {exception.Message}";
-                _logger.LogError(exception, _errorMessage);
-                throw;
-            }
-        }
-
-        public virtual async Task DeleteAsync(int id)
-        {
-            try
-            {
-                var entity = await _context.Set<TEntity>().FindAsync(id);
-
-                if (entity != null)
-                {
-                    _context.Set<TEntity>().Remove(entity);
-                }
-            }
-            catch (Exception exception)
-            {
-                _errorMessage = $"Error when deleting the record: {exception.Message}";
-                _logger.LogError(exception, _errorMessage);
-                throw;
-            }
+            _errorMessage = $"Error when deleting the record: {exception.Message}";
+            _logger.LogError(exception, _errorMessage);
+            throw;
         }
     }
 }
