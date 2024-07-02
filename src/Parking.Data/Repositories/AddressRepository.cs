@@ -3,10 +3,9 @@ using Parking.Data.Context;
 using Parking.Model.Interfaces;
 using Parking.Model.Models;
 
-namespace Parking.Data.Repositories
+namespace Parking.Data.Repositories;
+
+public class AddressRepository : Repository<Address>, IAddressRepository
 {
-    public class AddressRepository : Repository<Address>, IAddressRepository
-    {
-        public AddressRepository(ApplicationDbContext context, ILogger<Address> logger) : base(context, logger) { }
-    }
+    public AddressRepository(ApplicationDbContext context, ILogger<Address> logger) : base(context, logger) { }
 }
