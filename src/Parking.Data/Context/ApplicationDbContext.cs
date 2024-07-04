@@ -24,6 +24,17 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        ConfigureAddress(modelBuilder);
+        ConfigureCustomer(modelBuilder);
+        ConfigureCustomerVehicle(modelBuilder);
+        ConfigureStay(modelBuilder);
+        ConfigureVehicle(modelBuilder);
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
+    private void ConfigureAddress(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Address>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Addresse__3214EC07CB7D83E4");
@@ -56,7 +67,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(9)
                 .IsUnicode(false);
         });
+    }
 
+    private void ConfigureCustomer(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Customer>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC0794F4CDEF");
@@ -84,7 +98,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.AddressId)
                 .HasConstraintName("FK__Customers__Addre__3A81B327");
         });
+    }
 
+    private void ConfigureCustomerVehicle(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<CustomerVehicle>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC0773697324");
@@ -97,7 +114,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.VehicleId)
                 .HasConstraintName("FK__CustomerV__Vehic__4222D4EF");
         });
+    }
 
+    private void ConfigureStay(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Stay>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Stays__3214EC078CDF02D7");
@@ -118,7 +138,10 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.CustomerVehicleId)
                 .HasConstraintName("FK__Stays__CustomerV__45F365D3");
         });
+    }
 
+    private void ConfigureVehicle(ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Vehicle>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Vehicles__3214EC07D56A8AC5");
@@ -142,8 +165,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false);
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
