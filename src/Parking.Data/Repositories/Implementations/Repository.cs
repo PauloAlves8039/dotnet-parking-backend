@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Parking.Data.Context;
-using Parking.Model.Interfaces;
+using Parking.Model.Interfaces.Repositories;
 
-namespace Parking.Data.Repositories;
+namespace Parking.Data.Repositories.Implementations;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 {

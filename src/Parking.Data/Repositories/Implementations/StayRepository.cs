@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Parking.Data.Context;
-using Parking.Model.Interfaces;
+using Parking.Model.Interfaces.Repositories;
 using Parking.Model.Models;
 
-namespace Parking.Data.Repositories;
+namespace Parking.Data.Repositories.Implementations;
 
 public class StayRepository : Repository<Stay>, IStayRepository
 {
@@ -81,7 +81,7 @@ public class StayRepository : Repository<Stay>, IStayRepository
         {
             var existingStay = await _context.Stays.FirstOrDefaultAsync(s => s.Id == stay.Id);
 
-            if (existingStay != null) 
+            if (existingStay != null)
             {
                 existingStay.CustomerVehicle = stay.CustomerVehicle;
                 existingStay.LicensePlate = stay.LicensePlate;
