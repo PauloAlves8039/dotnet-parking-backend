@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Parking.Service.DTOs;
-using Parking.Service.Interfaces.Business;
+using Parking.Model.DTOs;
+using Parking.Model.Interfaces.Services;
 
 namespace Parking.WebAPI.Controllers;
 

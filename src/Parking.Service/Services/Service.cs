@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Parking.Model.Interfaces;
-using Parking.Service.Interfaces;
+using Parking.Model.Interfaces.Repositories;
+using Parking.Model.Interfaces.Services;
 
 namespace Parking.Service.Services;
 

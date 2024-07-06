@@ -1,6 +1,6 @@
-﻿using Parking.Model.Interfaces;
+﻿using Parking.Model.DTOs;
+using Parking.Model.Interfaces.Repositories;
 using Parking.Model.Models;
-using Parking.Service.DTOs;
 using Parking.Service.Helpers.Interfaces;
 
 namespace Parking.Service.Helpers
