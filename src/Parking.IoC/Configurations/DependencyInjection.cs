@@ -3,13 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Parking.Data.Context;
 using Parking.Service.Helpers.Interfaces;
 using Parking.Service.Helpers;
-using Parking.Service.Interfaces.Business;
-using Parking.Service.Interfaces;
 using Parking.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Parking.IoC.Mappings;
 using Parking.Model.Interfaces.Repositories;
 using Parking.Data.Repositories.Implementations;
+using Parking.Model.Interfaces.Services;
 
 namespace Parking.IoC.Configurations
 {

@@ -1,4 +1,4 @@
-﻿namespace Parking.Service.Interfaces;
+﻿namespace Parking.Model.Interfaces.Services;
 
 public interface IDeleteService
 {

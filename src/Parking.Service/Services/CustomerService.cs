@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Parking.Model.Interfaces;
+using Parking.Model.DTOs;
+using Parking.Model.Interfaces.Repositories;
+using Parking.Model.Interfaces.Services;
 using Parking.Model.Models;
-using Parking.Service.DTOs;
-using Parking.Service.Interfaces.Business;
 
 namespace Parking.Service.Services;
 

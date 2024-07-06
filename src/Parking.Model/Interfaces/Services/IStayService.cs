@@ -1,6 +1,6 @@
-﻿using Parking.Service.DTOs;
+﻿using Parking.Model.DTOs;
 
-namespace Parking.Service.Interfaces.Business;
+namespace Parking.Model.Interfaces.Services;
 
 public interface IStayService : IDataRetrievalService<StayDTO>,
                                 ICustomAddUpdateService<StayDTO>,
