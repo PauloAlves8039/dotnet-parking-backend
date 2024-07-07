@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Parking.Model.DTOs;
 using Parking.Model.Interfaces.Services;
 
 namespace Parking.WebAPI.Controllers;
 
+[Authorize(AuthenticationSchemes = "Bearer")]
 [Route("api/[controller]")]
 [ApiController]
 public class StayController : ControllerBase
@@ -96,6 +98,7 @@ public class StayController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Policy = "DeletePermission")]
     public async Task<IActionResult> Delete(int id)
     {
         try
