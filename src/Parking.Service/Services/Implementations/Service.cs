@@ -2,7 +2,7 @@
 using Parking.Model.Interfaces.Repositories;
 using Parking.Model.Interfaces.Services;
 
-namespace Parking.Service.Services;
+namespace Parking.Service.Services.Implementations;
 
 public class Service<TEntity, TDto> : IService<TEntity, TDto>
     where TEntity : class

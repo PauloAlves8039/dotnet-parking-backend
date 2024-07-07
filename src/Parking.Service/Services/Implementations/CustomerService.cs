@@ -4,7 +4,7 @@ using Parking.Model.Interfaces.Repositories;
 using Parking.Model.Interfaces.Services;
 using Parking.Model.Models;
 
-namespace Parking.Service.Services;
+namespace Parking.Service.Services.Implementations;
 
 public class CustomerService : Service<Customer, CustomerDTO>, ICustomerService
 {
