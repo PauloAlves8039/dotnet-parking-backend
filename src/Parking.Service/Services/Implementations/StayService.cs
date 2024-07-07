@@ -5,7 +5,7 @@ using Parking.Model.Interfaces.Services;
 using Parking.Model.Models;
 using Parking.Service.Helpers.Interfaces;
 
-namespace Parking.Service.Services;
+namespace Parking.Service.Services.Implementations;
 
 public class StayService : IStayService
 {
