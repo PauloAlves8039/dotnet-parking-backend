@@ -13,8 +13,8 @@ public class UserController : ControllerBase
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly ITokenService _tokenService;
 
-    public UserController(UserManager<IdentityUser> userManager, 
-                          SignInManager<IdentityUser> signInManager, 
+    public UserController(UserManager<IdentityUser> userManager,
+                          SignInManager<IdentityUser> signInManager,
                           ITokenService tokenService)
     {
         _userManager = userManager;
@@ -23,8 +23,13 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("register")]
-    public async Task<ActionResult> RegisterUser([FromBody] UserDTO userDTO) 
+    public async Task<ActionResult> RegisterUser([FromBody] UserDTO userDTO)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
         var user = new IdentityUser
         {
             UserName = userDTO.Email,
@@ -34,7 +39,7 @@ public class UserController : ControllerBase
 
         var result = await _userManager.CreateAsync(user, userDTO.Password);
 
-        if (!result.Succeeded) 
+        if (!result.Succeeded)
         {
             return BadRequest(result.Errors);
         }
@@ -43,29 +48,29 @@ public class UserController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] UserDTO userDTO) 
+    public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
+            return BadRequest(ModelState);
         }
 
-        var user = await _userManager.FindByEmailAsync(userDTO.Email);
+        var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
-        if (user == null) 
+        if (user == null)
         {
             ModelState.AddModelError(string.Empty, "User not found.");
             return BadRequest(ModelState);
         }
 
-        var result = await _signInManager.CheckPasswordSignInAsync(user, userDTO.Password, lockoutOnFailure: false);
+        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDTO.Password, lockoutOnFailure: false);
 
         if (result.Succeeded)
         {
-            UserToken token = _tokenService.GenerateToken(userDTO.Email);
+            UserToken token = _tokenService.GenerateToken(loginDTO.Email);
             return Ok(token);
         }
-        else 
+        else
         {
             ModelState.AddModelError(string.Empty, "Invalid Login");
             return BadRequest(ModelState);
