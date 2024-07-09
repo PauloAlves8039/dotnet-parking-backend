@@ -6,33 +6,32 @@ using Microsoft.IdentityModel.Tokens;
 using Parking.Data.Context;
 using System.Text;
 
-namespace Parking.IoC.Configurations
+namespace Parking.IoC.Configurations;
+
+public static class DependencyInjectionJWT
 {
-    public static class DependencyInjectionJWT
+    public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services, IConfiguration configuration) 
     {
-        public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services, IConfiguration configuration) 
-        {
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<IdentityApplicationDbContext>()
-                    .AddDefaultTokenProviders();
+        services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IdentityApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
-            services.AddAuthentication(
-                    JwtBearerDefaults.AuthenticationScheme).
-                    AddJwtBearer(options =>
-                     options.TokenValidationParameters = new TokenValidationParameters
-                     {
-                         ValidateIssuer = true,
-                         ValidateAudience = true,
-                         ValidateLifetime = true,
-                         ValidAudience = configuration["TokenConfiguration:Audience"],
-                         ValidIssuer = configuration["TokenConfiguration:Issuer"],
-                         ValidateIssuerSigningKey = true,
-                         IssuerSigningKey = new SymmetricSecurityKey(
-                             Encoding.UTF8.GetBytes(configuration["Jwt:key"]))
+        services.AddAuthentication(
+                JwtBearerDefaults.AuthenticationScheme).
+                AddJwtBearer(options =>
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidAudience = configuration["TokenConfiguration:Audience"],
+                     ValidIssuer = configuration["TokenConfiguration:Issuer"],
+                     ValidateIssuerSigningKey = true,
+                     IssuerSigningKey = new SymmetricSecurityKey(
+                         Encoding.UTF8.GetBytes(configuration["Jwt:key"]))
 
-                     });
+                 });
 
-            return services;
-        }
+        return services;
     }
 }
