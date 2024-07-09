@@ -1,7 +1,6 @@
-﻿namespace Parking.Model.Models
+﻿namespace Parking.Model.Models;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; set; }
-    }
+    public int Id { get; set; }
 }
