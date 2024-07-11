@@ -17,4 +17,21 @@ public partial class Customer : Entity
     public virtual Address Address { get; set; }
 
     public virtual ICollection<CustomerVehicle> CustomerVehicles { get; set; } = new List<CustomerVehicle>();
+
+    public Customer(int id, 
+                    string name, 
+                    DateOnly? birthDate, 
+                    string cpf, 
+                    string phone, 
+                    string email, 
+                    int? addressId)
+    {
+        Id = id;
+        Name = name;
+        BirthDate = birthDate;
+        Cpf = cpf;
+        Phone = phone;
+        Email = email;
+        AddressId = addressId;
+    }
 }

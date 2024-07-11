@@ -15,4 +15,21 @@ public partial class Vehicle : Entity
     public string? Notes { get; set; }
 
     public virtual ICollection<CustomerVehicle> CustomerVehicles { get; set; } = new List<CustomerVehicle>();
+
+    public Vehicle(int id, 
+                   string vehicleType, 
+                   string brand, 
+                   string model, 
+                   string color, 
+                   int? vehicleYear, 
+                   string notes)
+    {
+        Id = id; ;
+        VehicleType = vehicleType;
+        Brand = brand;
+        Model = model;
+        Color = color;
+        VehicleYear = vehicleYear;
+        Notes = notes;
+    }
 }
