@@ -19,7 +19,7 @@ public class RepositoryTest
         var repositoryMock = new Mock<IRepository<Vehicle>>();
         repositoryMock.Setup(repository => repository.GetAllAsync()).ReturnsAsync(listVehicles);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.GetAllAsync();
 
@@ -35,7 +35,7 @@ public class RepositoryTest
         var repositoryMock = new Mock<IRepository<Vehicle>>();
         repositoryMock.Setup(repository => repository.GetAllAsync()).ReturnsAsync(entities);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.GetAllAsync();
 
@@ -51,7 +51,7 @@ public class RepositoryTest
         repositoryMock.Setup(repository => repository.GetByIdAsync(entityId))
             .ReturnsAsync(listVehicles.FirstOrDefault(r => r.Id == entityId));
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.GetByIdAsync(entityId);
 
@@ -66,7 +66,7 @@ public class RepositoryTest
         var repositoryMock = new Mock<IRepository<Vehicle>>();
         repositoryMock.Setup(repository => repository.GetByIdAsync(entityId)).ReturnsAsync((Vehicle)null);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.GetByIdAsync(entityId);
 
@@ -89,7 +89,7 @@ public class RepositoryTest
             return vehicle;
         });
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.AddAsync(newEntity); ;
 
@@ -107,7 +107,7 @@ public class RepositoryTest
 
         repositoryMock.Setup(repository => repository.AddAsync(It.IsAny<Vehicle>())).ReturnsAsync((Vehicle)null);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.AddAsync(newEntity);
 
@@ -125,7 +125,7 @@ public class RepositoryTest
         repositoryMock.Setup(repository => repository.UpdateAsync(It.IsAny<Vehicle>()))
                               .ReturnsAsync((Vehicle vehicle) => { return vehicle; });
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.UpdateAsync(updatedEntity);
 
@@ -146,7 +146,7 @@ public class RepositoryTest
 
         repositoryMock.Setup(repository => repository.UpdateAsync(It.IsAny<Vehicle>())).ReturnsAsync((Vehicle)null);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         var result = await _repository.UpdateAsync(nonExistingEntity);
 
@@ -174,7 +174,7 @@ public class RepositoryTest
         })
         .Returns(Task.CompletedTask);
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         await _repository.DeleteAsync(entityId);
 
@@ -203,7 +203,7 @@ public class RepositoryTest
         .Returns(Task.CompletedTask)
         .Verifiable();
 
-        IRepository<Vehicle> _repository = repositoryMock.Object;
+        var _repository = repositoryMock.Object;
 
         await _repository.DeleteAsync(entityId);
 

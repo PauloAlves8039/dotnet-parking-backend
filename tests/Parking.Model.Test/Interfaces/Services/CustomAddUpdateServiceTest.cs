@@ -7,7 +7,7 @@ namespace Parking.Model.Test.Interfaces.Services
     public class CustomAddUpdateServiceTest
     {
         [Fact(DisplayName = "AddAsync - Return The Added Record")]
-        public async Task CustomAddUpdateService_AddAsync_ShouldInsertRecordAndReturnAddedRecord()
+        public async Task StayService_AddAsync_ShouldInsertRecordAndReturnAddedRecord()
         {
             var serviceMock = new Mock<ICustomAddUpdateService<StayDTO>>();
 
@@ -33,7 +33,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "AddAsync - Returns Null When Add Fails")]
-        public async Task CustomAddUpdateService_AddAsync_ShouldReturnNullWhenAddedRecordFails()
+        public async Task StayService_AddAsync_ShouldReturnNullWhenAddedRecordFails()
         {
             var serviceMock = new Mock<ICustomAddUpdateService<StayDTO>>();
 
@@ -59,7 +59,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "UpdateAsync - Return Updated Record")]
-        public async Task CustomAddUpdateService_UpdateAsync_ShouldUpdateReturnUpdatedRecord()
+        public async Task StayService_UpdateAsync_ShouldUpdateReturnUpdatedRecord()
         {
             var serviceMock = new Mock<ICustomAddUpdateService<StayDTO>>();
 
@@ -85,7 +85,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "UpdateAsync - Returns Null When Record Not Found")]
-        public async Task CustomAddUpdateService_UpdateAsync_ShouldReturnNullWhenRecordNotFound()
+        public async Task StayService_UpdateAsync_ShouldReturnNullWhenRecordNotFound()
         {
             var serviceMock = new Mock<ICustomAddUpdateService<StayDTO>>();
 
