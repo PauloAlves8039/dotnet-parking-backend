@@ -1,15 +1,14 @@
-﻿namespace Parking.Model.Validation
-{
-    public class ModelExceptionValidation : Exception
-    {
-        public ModelExceptionValidation(string error) : base(error) { }
+﻿namespace Parking.Model.Validation;
 
-        public static void When(bool hasErros, string error)
+public class ModelExceptionValidation : Exception
+{
+    public ModelExceptionValidation(string error) : base(error) { }
+
+    public static void When(bool hasErros, string error)
+    {
+        if (hasErros)
         {
-            if (hasErros)
-            {
-                throw new ModelExceptionValidation(error);
-            }
+            throw new ModelExceptionValidation(error);
         }
     }
 }
