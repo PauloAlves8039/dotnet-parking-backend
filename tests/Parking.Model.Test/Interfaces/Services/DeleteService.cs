@@ -6,7 +6,7 @@ namespace Parking.Model.Test.Interfaces.Services
     public class DeleteService
     {
         [Fact(DisplayName = "DeleteAsync - Returns The Existing Record Delete")]
-        public async Task StayService_DeleteAsync_ShouldRemoveRecordAndReturnRemovedRecord()
+        public async Task Service_DeleteAsync_ShouldRemoveRecordAndReturnRemovedRecord()
         {
             var serviceMock = new Mock<IDeleteService>();
 
@@ -22,7 +22,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "DeleteAsync - Returns Null When Record Not Found")]
-        public async Task StayService_DeleteAsync_ShouldReturnNullWhenRecordNotFound()
+        public async Task Service_DeleteAsync_ShouldReturnNullWhenRecordNotFound()
         {
             var serviceMock = new Mock<IDeleteService>();
 

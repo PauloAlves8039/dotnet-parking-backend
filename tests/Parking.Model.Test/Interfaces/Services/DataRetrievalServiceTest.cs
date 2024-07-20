@@ -44,7 +44,7 @@ namespace Parking.Model.Test.Interfaces.Services
         };
 
         [Fact(DisplayName = "GetAllAsync - Return All Records")]
-        public async Task StayService_GetAllAsync_ShouldReturnAllRecords()
+        public async Task Service_GetAllAsync_ShouldReturnAllRecords()
         {
             var serviceMock = new Mock<IDataRetrievalService<StayDTO>>();
 
@@ -59,7 +59,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "GetAllAsync - Return Empty List When No Records Exist")]
-        public async Task StayService_GetAllAsync_ShouldReturnEmptyListWhenNoRecordsExist()
+        public async Task Service_GetAllAsync_ShouldReturnEmptyListWhenNoRecordsExist()
         {
             var serviceMock = new Mock<IDataRetrievalService<StayDTO>>();
             var emptyStays = new List<StayDTO>();
@@ -75,7 +75,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "GetByIdAsync - Returns Record When Id exists")]
-        public async Task StayService_GetByIdAsync_ShouldReturnRecordWhenIdExists()
+        public async Task Service_GetByIdAsync_ShouldReturnRecordWhenIdExists()
         {
             var serviceMock = new Mock<IDataRetrievalService<StayDTO>>();
             var stayId = 1;
@@ -103,7 +103,7 @@ namespace Parking.Model.Test.Interfaces.Services
         }
 
         [Fact(DisplayName = "GetByIdAsync - Returns Null When Id Does Not Exist")]
-        public async Task StayService_GetByIdAsync_ShouldReturnNullWhenRecordIdDoesNotExist()
+        public async Task Service_GetByIdAsync_ShouldReturnNullWhenRecordIdDoesNotExist()
         {
             var serviceMock = new Mock<IDataRetrievalService<StayDTO>>();
             var invalidStayId = 9999;
