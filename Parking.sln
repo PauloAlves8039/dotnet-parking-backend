@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.IoC", "src\Parking.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Model.Test", "tests\Parking.Model.Test\Parking.Model.Test.csproj", "{77D5DAD8-2ACF-4781-A42B-8558450E6B6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Service.Test", "tests\Parking.Service.Test\Parking.Service.Test.csproj", "{0F542A45-1D3D-4E2B-A568-FE7E3D9B8B5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Service.Test", "tests\Parking.Service.Test\Parking.Service.Test.csproj", "{0F542A45-1D3D-4E2B-A568-FE7E3D9B8B5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
