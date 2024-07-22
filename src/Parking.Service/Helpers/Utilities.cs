@@ -9,6 +9,11 @@ public class Utilities : IUtilities
 {
     public async Task UpdateStayStatus(int id, string newStatus, IRepository<Stay> repository)
     {
+        if (string.IsNullOrEmpty(newStatus))
+        {
+            throw new ArgumentException("StayStatus cannot be null or empty", nameof(newStatus));
+        }
+
         var existingStay = await repository.GetByIdAsync(id);
 
         if (existingStay != null)
