@@ -18,9 +18,17 @@ public class ApplicationDbContextFactory : IApplicationDbContextFactory
 
     public ApplicationDbContext CreateDbContext()
     {
+        var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+        }
+
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+        optionsBuilder.UseSqlServer(connectionString);
 
         return new ApplicationDbContext(optionsBuilder.Options);
     }
+
 }
