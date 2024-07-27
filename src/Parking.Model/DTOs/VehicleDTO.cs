@@ -38,4 +38,15 @@ public class VehicleDTO
     [MinLength(1, ErrorMessage = "Notes must be at least 1 character long")]
     [Display(Name = "Notes")]
     public string? Notes { get; set; }
+
+    public VehicleDTO(int id, string vehicleType, string brand, string model, string color, int? vehicleYear, string notes)
+    {
+        Id = id;
+        VehicleType = vehicleType;
+        Brand = brand;
+        Model = model;
+        Color = color;
+        VehicleYear = vehicleYear;
+        Notes = notes;
+    }
 }
