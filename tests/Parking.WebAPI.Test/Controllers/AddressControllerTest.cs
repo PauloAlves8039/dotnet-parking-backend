@@ -165,8 +165,8 @@ public class AddressControllerTest
         mockAddressService.Verify(service => service.UpdateAsync(updateAddressDTO), Times.Once);
     }
 
-    [Fact(DisplayName = "Put - Return Address BadRequest When Ids Do Not Match")]
-    public async Task AddressController_Put_ShouldReturnAddressBadRequestWhenIdsDoNotMatch()
+    [Fact(DisplayName = "Put - Return BadRequest When Address Ids Do Not Match")]
+    public async Task AddressController_Put_ShouldReturnBadRequestWhenAddressIdsDoNotMatch()
     {
         var mockAddressService = new Mock<IAddressService>();
 

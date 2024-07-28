@@ -39,6 +39,8 @@ public class VehicleDTO
     [Display(Name = "Notes")]
     public string? Notes { get; set; }
 
+    public VehicleDTO() {}
+
     public VehicleDTO(int id, string vehicleType, string brand, string model, string color, int? vehicleYear, string notes)
     {
         Id = id;
