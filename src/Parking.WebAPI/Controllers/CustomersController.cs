@@ -84,7 +84,7 @@ public class CustomersController : ControllerBase
         {
             if (id != customerDTO.Id)
             {
-                return BadRequest("Invalid customer data or mismatched IDs.");
+                return BadRequest("Invalid Customer data or mismatched IDs.");
             }
 
             await _customerService.UpdateAsync(customerDTO);
