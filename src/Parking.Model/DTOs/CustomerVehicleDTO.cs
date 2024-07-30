@@ -24,4 +24,13 @@ public class CustomerVehicleDTO
 
     [JsonIgnore]
     public virtual ICollection<Stay> Stays { get; set; }
+
+    public CustomerVehicleDTO() {}
+
+    public CustomerVehicleDTO(int id, int? customerId, int? vehicleId)
+    {
+        Id = id;
+        CustomerId = customerId;
+        VehicleId = vehicleId;
+    }
 }
