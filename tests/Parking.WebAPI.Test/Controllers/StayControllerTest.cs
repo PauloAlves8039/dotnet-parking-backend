@@ -147,7 +147,7 @@ public class StayControllerTest
         var mockStayService = new Mock<IStayService>();
         var simulatedId = 4;
 
-        var newStayDTO = new StayDTO
+        var addStay = new StayDTO
         {
             Id = simulatedId,
             CustomerVehicleId = 1,
@@ -157,18 +157,18 @@ public class StayControllerTest
             StayStatus = "Estacionado"
         };
 
-        mockStayService.Setup(service => service.AddAsync(newStayDTO)).ReturnsAsync(newStayDTO);
+        mockStayService.Setup(service => service.AddAsync(addStay)).ReturnsAsync(addStay);
 
         var controller = new StayController(mockStayService.Object);
 
-        var result = await controller.Post(newStayDTO);
+        var result = await controller.Post(addStay);
 
         var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
 
         Assert.Equal(nameof(controller.GetById), createdResult.ActionName);
 
         var resultStay = Assert.IsType<StayDTO>(createdResult.Value);
-        Assert.Equal(newStayDTO, resultStay);
+        Assert.Equal(addStay, resultStay);
     }
 
     [Fact(DisplayName = "Post - Return BadRequest When Stay Is Null")]
@@ -189,7 +189,7 @@ public class StayControllerTest
         var mockStayService = new Mock<IStayService>();
         var stayId = 4;
 
-        var updateStayDTO = new StayDTO
+        var updateStay = new StayDTO
         {
             Id = stayId,
             CustomerVehicleId = 1,
@@ -201,16 +201,16 @@ public class StayControllerTest
             StayStatus = "Retirado"
         };
 
-        mockStayService.Setup(service => service.UpdateAsync(updateStayDTO)).ReturnsAsync(updateStayDTO);
+        mockStayService.Setup(service => service.UpdateAsync(updateStay)).ReturnsAsync(updateStay);
 
         var controller = new StayController(mockStayService.Object);
 
-        var result = await controller.Put(stayId, updateStayDTO);
+        var result = await controller.Put(stayId, updateStay);
 
         var noContentResult = Assert.IsType<NoContentResult>(result);
         Assert.Equal(StatusCodes.Status204NoContent, noContentResult.StatusCode);
 
-        mockStayService.Verify(service => service.UpdateAsync(updateStayDTO), Times.Once);
+        mockStayService.Verify(service => service.UpdateAsync(updateStay), Times.Once);
     }
 
     [Fact(DisplayName = "Put - Return BadRequest When Stay Ids Do Not Match")]
@@ -219,7 +219,7 @@ public class StayControllerTest
         var mockStayService = new Mock<IStayService>();
         var stayId = 4;
 
-        var updateStayDTO = new StayDTO
+        var updateStay = new StayDTO
         {
             Id = 5,
             CustomerVehicleId = 1,
@@ -233,7 +233,7 @@ public class StayControllerTest
 
         var controller = new StayController(mockStayService.Object);
 
-        var result = await controller.Put(stayId, updateStayDTO);
+        var result = await controller.Put(stayId, updateStay);
 
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal(StatusCodes.Status400BadRequest, badRequestResult.StatusCode);
@@ -246,7 +246,7 @@ public class StayControllerTest
         var mockStayService = new Mock<IStayService>();
         var stayId = 1;
 
-        var stay = new StayDTO
+        var deleteStay = new StayDTO
         {
             Id = stayId,
             CustomerVehicleId = 1,
@@ -278,7 +278,7 @@ public class StayControllerTest
         var mockStayService = new Mock<IStayService>();
         var stayId = 5;
 
-        var stay = new StayDTO
+        var deleteStay = new StayDTO
         {
             Id = stayId,
             CustomerVehicleId = 1,

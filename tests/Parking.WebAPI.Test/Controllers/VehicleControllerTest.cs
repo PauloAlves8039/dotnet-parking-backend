@@ -115,20 +115,20 @@ public class VehicleControllerTest
         var mockVehicleService = new Mock<IVehicleService>();
 
         var simulatedId = 4;
-        var newVehicleDTO = new VehicleDTO(simulatedId, "Moto", "Honda", "CBX 200 strada", "Vermelha", 2002, "Bom estado de conservação");
+        var addVehicle = new VehicleDTO(simulatedId, "Moto", "Honda", "CBX 200 strada", "Vermelha", 2002, "Bom estado de conservação");
 
-        mockVehicleService.Setup(service => service.AddAsync(newVehicleDTO)).ReturnsAsync(newVehicleDTO);
+        mockVehicleService.Setup(service => service.AddAsync(addVehicle)).ReturnsAsync(addVehicle);
 
         var controller = new VehicleController(mockVehicleService.Object);
 
-        var result = await controller.Post(newVehicleDTO);
+        var result = await controller.Post(addVehicle);
 
         var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
 
         Assert.Equal(nameof(controller.GetById), createdResult.ActionName);
 
         var resultVehicle = Assert.IsType<VehicleDTO>(createdResult.Value);
-        Assert.Equal(newVehicleDTO, resultVehicle);
+        Assert.Equal(addVehicle, resultVehicle);
     }
 
     [Fact(DisplayName = "Post - Return BadRequest When Vehicle Is Null")]
@@ -149,18 +149,18 @@ public class VehicleControllerTest
         var mockVehicleService = new Mock<IVehicleService>();
 
         var vehicleId = 4;
-        var updateVehicleDTO = new VehicleDTO(vehicleId, "Moto", "Honda", "CBX 200 strada", "Verde", 2002, "Bom estado de conservação");
+        var updateVehicle = new VehicleDTO(vehicleId, "Moto", "Honda", "CBX 200 strada", "Verde", 2002, "Bom estado de conservação");
 
-        mockVehicleService.Setup(service => service.UpdateAsync(updateVehicleDTO)).ReturnsAsync(updateVehicleDTO);
+        mockVehicleService.Setup(service => service.UpdateAsync(updateVehicle)).ReturnsAsync(updateVehicle);
 
         var controller = new VehicleController(mockVehicleService.Object);
 
-        var result = await controller.Put(vehicleId, updateVehicleDTO);
+        var result = await controller.Put(vehicleId, updateVehicle);
 
         var noContentResult = Assert.IsType<NoContentResult>(result);
         Assert.Equal(StatusCodes.Status204NoContent, noContentResult.StatusCode);
 
-        mockVehicleService.Verify(service => service.UpdateAsync(updateVehicleDTO), Times.Once);
+        mockVehicleService.Verify(service => service.UpdateAsync(updateVehicle), Times.Once);
     }
 
     [Fact(DisplayName = "Put - Return BadRequest When Vehicle Ids Do Not Match")]
@@ -169,11 +169,11 @@ public class VehicleControllerTest
         var mockVehicleService = new Mock<IVehicleService>();
 
         var vehicleId = 4;
-        var updateVehicleDTO = new VehicleDTO(5, "Moto", "Honda", "CBX 200 strada", "Verde", 2002, "Bom estado de conservação");
+        var updateVehicle = new VehicleDTO(5, "Moto", "Honda", "CBX 200 strada", "Verde", 2002, "Bom estado de conservação");
 
         var controller = new VehicleController(mockVehicleService.Object);
 
-        var result = await controller.Put(vehicleId, updateVehicleDTO);
+        var result = await controller.Put(vehicleId, updateVehicle);
 
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal(StatusCodes.Status400BadRequest, badRequestResult.StatusCode);
@@ -186,7 +186,7 @@ public class VehicleControllerTest
         var mockVehicleService = new Mock<IVehicleService>();
         var vehicleId = 1;
 
-        var address = new VehicleDTO
+        var deleteAddress = new VehicleDTO
         {
             Id = vehicleId,
             VehicleType = "Carro",
@@ -217,7 +217,7 @@ public class VehicleControllerTest
         var mockVehicleService = new Mock<IVehicleService>();
         var vehicleId = 4;
 
-        var address = new VehicleDTO
+        var deleteAddress = new VehicleDTO
         {
             Id = vehicleId,
             VehicleType = "Carro",

@@ -117,20 +117,20 @@ public class AddressControllerTest
         var mockAddressService = new Mock<IAddressService>();
 
         var simulatedId = 4;
-        var newAddressDTO = new AddressDTO(simulatedId, "Rua São Miguel", "893", "Apto 14", "Encruzilhada", "PE", "Recife", "52000-444");
+        var addAddress = new AddressDTO(simulatedId, "Rua São Miguel", "893", "Apto 14", "Encruzilhada", "PE", "Recife", "52000-444");
 
-        mockAddressService.Setup(service => service.AddAsync(newAddressDTO)).ReturnsAsync(newAddressDTO);
+        mockAddressService.Setup(service => service.AddAsync(addAddress)).ReturnsAsync(addAddress);
 
         var controller = new AddressController(mockAddressService.Object);
 
-        var result = await controller.Post(newAddressDTO);
+        var result = await controller.Post(addAddress);
 
         var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
 
         Assert.Equal(nameof(controller.GetById), createdResult.ActionName);
 
-        var resultVehicle = Assert.IsType<AddressDTO>(createdResult.Value);
-        Assert.Equal(newAddressDTO, resultVehicle);
+        var resultAddress = Assert.IsType<AddressDTO>(createdResult.Value);
+        Assert.Equal(addAddress, resultAddress);
     }
 
     [Fact(DisplayName = "Post - Return BadRequest When Address Is Null")]
@@ -151,18 +151,18 @@ public class AddressControllerTest
         var mockAddressService = new Mock<IAddressService>();
 
         var vehicleId = 4;
-        var updateAddressDTO = new AddressDTO(vehicleId, "Rua São Miguel", "753", "Apto 28", "Encruzilhada", "PE", "Recife", "52000-444");
+        var updateAddress = new AddressDTO(vehicleId, "Rua São Miguel", "753", "Apto 28", "Encruzilhada", "PE", "Recife", "52000-444");
 
-        mockAddressService.Setup(service => service.UpdateAsync(updateAddressDTO)).ReturnsAsync(updateAddressDTO);
+        mockAddressService.Setup(service => service.UpdateAsync(updateAddress)).ReturnsAsync(updateAddress);
 
         var controller = new AddressController(mockAddressService.Object);
 
-        var result = await controller.Put(vehicleId, updateAddressDTO);
+        var result = await controller.Put(vehicleId, updateAddress);
 
         var noContentResult = Assert.IsType<NoContentResult>(result);
         Assert.Equal(StatusCodes.Status204NoContent, noContentResult.StatusCode);
 
-        mockAddressService.Verify(service => service.UpdateAsync(updateAddressDTO), Times.Once);
+        mockAddressService.Verify(service => service.UpdateAsync(updateAddress), Times.Once);
     }
 
     [Fact(DisplayName = "Put - Return BadRequest When Address Ids Do Not Match")]
@@ -171,11 +171,11 @@ public class AddressControllerTest
         var mockAddressService = new Mock<IAddressService>();
 
         var addressId = 4;
-        var updateAddressDTO = new AddressDTO(5, "Rua São Miguel", "753", "Apto 28", "Encruzilhada", "PE", "Recife", "52000-444");
+        var updateAddress = new AddressDTO(5, "Rua São Miguel", "753", "Apto 28", "Encruzilhada", "PE", "Recife", "52000-444");
 
         var controller = new AddressController(mockAddressService.Object);
 
-        var result = await controller.Put(addressId, updateAddressDTO);
+        var result = await controller.Put(addressId, updateAddress);
 
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Equal(StatusCodes.Status400BadRequest, badRequestResult.StatusCode);
@@ -188,7 +188,7 @@ public class AddressControllerTest
         var mockAddressService = new Mock<IAddressService>();
         var addressId = 1;
 
-        var address = new AddressDTO
+        var deleteAddress = new AddressDTO
         {
             Id = addressId,
             Street = "Rua São Pedro",
@@ -220,7 +220,7 @@ public class AddressControllerTest
         var mockAddressService = new Mock<IAddressService>();
         var addressId = 4;
 
-        var address = new AddressDTO
+        var deleteAddress = new AddressDTO
         {
             Id = addressId,
             Street = "Rua São Pedro",
