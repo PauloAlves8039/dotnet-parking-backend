@@ -45,4 +45,25 @@ public class AddressDTO
     [MinLength(8, ErrorMessage = "ZipCode must be at least 8 characters long")]
     [Display(Name = "Zip Code")]
     public string ZipCode { get; set; }
+
+    public AddressDTO() {}
+
+    public AddressDTO(int id, 
+                      string street, 
+                      string number, 
+                      string complement, 
+                      string neighborhood, 
+                      string federativeUnit, 
+                      string city, 
+                      string zipCode)
+    {
+        Id = id;
+        Street = street;
+        Number = number;
+        Complement = complement;
+        Neighborhood = neighborhood;
+        FederativeUnit = federativeUnit;
+        City = city;
+        ZipCode = zipCode;
+    }
 }

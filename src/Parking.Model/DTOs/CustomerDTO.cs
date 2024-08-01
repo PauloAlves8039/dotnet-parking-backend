@@ -18,7 +18,7 @@ public class CustomerDTO
 
     [Required(ErrorMessage = "Birth Date is required")]
     [DisplayName("Birth Date")]
-    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
+    [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
     public DateOnly? BirthDate { get; set; }
 
     [Required(ErrorMessage = "CPF is required")]
@@ -45,4 +45,23 @@ public class CustomerDTO
 
     [JsonIgnore]
     public virtual Address Address { get; set; }
+
+    public CustomerDTO() {}
+
+    public CustomerDTO(int id, 
+                       string name, 
+                       DateOnly? birthDate, 
+                       string cpf, 
+                       string phone, 
+                       string email, 
+                       int? addressId)
+    {
+        Id = id;
+        Name = name;
+        BirthDate = birthDate;
+        Cpf = cpf;
+        Phone = phone;
+        Email = email;
+        AddressId = addressId;
+    }
 }
