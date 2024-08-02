@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Service.Test", "tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.Data.Test", "tests\Parking.Data.Test\Parking.Data.Test.csproj", "{48033A69-D685-4C87-B19E-313225109DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.WebAPI.Test", "tests\Parking.WebAPI.Test\Parking.WebAPI.Test.csproj", "{EAF6383C-95A1-4A48-B8C9-4994382DE218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parking.WebAPI.Test", "tests\Parking.WebAPI.Test\Parking.WebAPI.Test.csproj", "{EAF6383C-95A1-4A48-B8C9-4994382DE218}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{645A86A6-6B22-4B88-8F3E-6FE29308A252}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{EAF6383C-95A1-4A48-B8C9-4994382DE218}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAF6383C-95A1-4A48-B8C9-4994382DE218}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAF6383C-95A1-4A48-B8C9-4994382DE218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{645A86A6-6B22-4B88-8F3E-6FE29308A252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{645A86A6-6B22-4B88-8F3E-6FE29308A252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{645A86A6-6B22-4B88-8F3E-6FE29308A252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{645A86A6-6B22-4B88-8F3E-6FE29308A252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
