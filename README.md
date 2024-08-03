@@ -8,17 +8,32 @@
 
 ## :computer: Project
 
-This project simulates a `parking` management system, this application was developed for academic purposes.
+This project simulates a small `parking` management system, this application was developed for academic purposes.
+
+## :hammer: Features
+
+`Operations`: For all entities in the application, you can perform basic operations such as `listing`, `searching all records`, `searching for individual records`, `creating`, `updating`, and `deleting`.
+
+`Security`: New `Users` can be registered, and processes for `Authentication` and `Authorization` of these users are implemented.
 
 ## ✔️ Resources Used
 
-- `MVC pattern`
-- `Layered Architecture`
 - `.NET 8.0`
 - `ASP.NET Core WebAPI`
 - `C#`
+- `MVC pattern`
+- `Repository Pattern`
+- `Service Pattern`
+- `Layered Architecture`
 - `Entity Framework Core`
 - `SQL Server`
+- `AutoMapper`
+- `Microsoft Identity`
+- `JWT`
+- `Swagger`
+- `XUnit`
+- `Moq`
+- `Docker`
 
 ## :floppy_disk: Clone Repository
 
