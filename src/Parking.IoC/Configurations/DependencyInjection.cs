@@ -42,6 +42,8 @@ public static class DependencyInjection
         services.AddScoped<IUtilities, Utilities>();
         services.AddAutoMapper(typeof(ParkingProfile));
 
+        services.AddScoped<IPdfService, PdfService>();
+
         return services;
     }
 }
