@@ -1,9 +1,8 @@
 ﻿using Parking.Model.DTOs;
 
-namespace Parking.Service.Helpers.Interfaces
+namespace Parking.Service.Helpers.Interfaces;
+
+public interface IPdfService
 {
-    public interface IPdfService
-    {
-        byte[] GenerateStayPdf(StayDTO stayDto);
-    }
+    byte[] GenerateStayPdf(StayDTO stayDto);
 }

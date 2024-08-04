@@ -86,7 +86,6 @@ public class StayController : ControllerBase
         }
     }
 
-
     [HttpPost]
     public async Task<ActionResult<AddressDTO>> Post([FromBody] StayDTO stayDTO)
     {
