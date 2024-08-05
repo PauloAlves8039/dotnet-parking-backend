@@ -72,7 +72,7 @@ public class PdfService : IPdfService
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error generating PDF for Stay ID: {Id}", stayDto?.Id);
-            throw new PdfException("An error occurred while generating the PDF.", ex);
+            throw new PdfStayException("An error occurred while generating the PDF.", ex);
         }
     }
 
