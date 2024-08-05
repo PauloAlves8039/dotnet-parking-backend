@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Parking.Model.DTOs;
 using Parking.Model.Interfaces.Services;
+using Parking.Service.Helpers.Interfaces;
 
 namespace Parking.WebAPI.Controllers;
 
@@ -11,10 +12,12 @@ namespace Parking.WebAPI.Controllers;
 public class StayController : ControllerBase
 {
     private readonly IStayService _stayService;
+    private readonly IPdfService _pdfService;
 
-    public StayController(IStayService stayService)
+    public StayController(IStayService stayService, IPdfService pdfService = null)
     {
         _stayService = stayService;
+        _pdfService = pdfService;
     }
 
     [HttpGet]
@@ -112,6 +115,32 @@ public class StayController : ControllerBase
 
             await _stayService.DeleteAsync(id);
             return NoContent();
+        }
+        catch (Exception exception)
+        {
+            return StatusCode(500, $"Internal server error: {exception.Message}");
+        }
+    }
+
+    [HttpGet("ticket/{id:int}")]
+    public async Task<IActionResult> GeneratePdf(int id)
+    {
+        try
+        {
+            var stayDto = await _stayService.GetByIdAsync(id);
+
+            if (stayDto == null)
+            {
+                return NotFound($"Stay with code {id} not found.");
+            }
+
+            if (_pdfService == null)
+            {
+                return StatusCode(500, "PDF service is not available.");
+            }
+
+            var pdfBytes = _pdfService.GenerateStayPdf(stayDto);
+            return File(pdfBytes, "application/pdf", "Stay.pdf");
         }
         catch (Exception exception)
         {
