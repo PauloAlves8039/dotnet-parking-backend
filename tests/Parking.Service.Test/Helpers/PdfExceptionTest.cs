@@ -1,5 +1,4 @@
-﻿using iText.Kernel.Exceptions;
-using Parking.Service.Helpers;
+﻿using Parking.Service.Helpers;
 
 namespace Parking.Service.Test.Helpers;
 

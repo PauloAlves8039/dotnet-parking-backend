@@ -60,32 +60,6 @@ public class StayController : ControllerBase
         }
     }
 
-    [HttpGet("ticket/{id:int}")]
-    public async Task<IActionResult> GeneratePdf(int id)
-    {
-        try
-        {
-            var stayDto = await _stayService.GetByIdAsync(id);
-
-            if (stayDto == null)
-            {
-                return NotFound($"Stay with code {id} not found.");
-            }
-
-            if (_pdfService == null)
-            {
-                return StatusCode(500, "PDF service is not available.");
-            }
-
-            var pdfBytes = _pdfService.GenerateStayPdf(stayDto);
-            return File(pdfBytes, "application/pdf", "Stay.pdf");
-        }
-        catch (Exception exception)
-        {
-            return StatusCode(500, $"Internal server error: {exception.Message}");
-        }
-    }
-
     [HttpPost]
     public async Task<ActionResult<AddressDTO>> Post([FromBody] StayDTO stayDTO)
     {
@@ -141,6 +115,32 @@ public class StayController : ControllerBase
 
             await _stayService.DeleteAsync(id);
             return NoContent();
+        }
+        catch (Exception exception)
+        {
+            return StatusCode(500, $"Internal server error: {exception.Message}");
+        }
+    }
+
+    [HttpGet("ticket/{id:int}")]
+    public async Task<IActionResult> GeneratePdf(int id)
+    {
+        try
+        {
+            var stayDto = await _stayService.GetByIdAsync(id);
+
+            if (stayDto == null)
+            {
+                return NotFound($"Stay with code {id} not found.");
+            }
+
+            if (_pdfService == null)
+            {
+                return StatusCode(500, "PDF service is not available.");
+            }
+
+            var pdfBytes = _pdfService.GenerateStayPdf(stayDto);
+            return File(pdfBytes, "application/pdf", "Stay.pdf");
         }
         catch (Exception exception)
         {
