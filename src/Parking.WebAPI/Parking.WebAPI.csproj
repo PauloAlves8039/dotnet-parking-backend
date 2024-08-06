@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Parking.IoC\Parking.IoC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
 </Project>
