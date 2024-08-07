@@ -22,9 +22,9 @@ This project simulates a small `parking` management system, this application was
 
 ## :hammer: Features
 
-`Operations`: For all entities in the application, you can perform basic operations such as `listing`, `searching all records`, `searching for individual records`, `creating`, `updating`, and `deleting`.
+`Operations`: for all entities in the application, you can perform basic operations such as `listing`, `searching all records`, `searching for individual records`, `creating`, `updating`, and `deleting`.
 
-`Security`: New `Users` can be registered, and processes for `Authentication` and `Authorization` of these users are implemented.
+`Security`: new `Users` can be registered, and processes for `Authentication` and `Authorization` of these users are implemented.
 
 ## ✔️ Resources Used
 
@@ -46,11 +46,49 @@ This project simulates a small `parking` management system, this application was
 - `Docker`
 - `Itext7`
 
+## :white_check_mark: Technical Decisions
+
+- `Creation of 5 Layers`: the aim was to modularize the project by dividing up the responsibilities of each layer.
+- `Code Maintenance`: the modularized application makes it easier to add new features or make future corrections as required.
+- `Unit Tests`: the organization of the application modules makes it easier to create unit tests.
+- `Adding Docker`: the aim is to allow the application to be used in other environments, in particular your database implemented in a more practical way.
+- `Generation of PDFs`: the creation of files in PDF format so that the records of the Stay model class can simulate a real system.   
+
 ## :floppy_disk: Clone Repository
 
 ```bash
 git clone https://github.com/PauloAlves8039/dotnet-parking-backend.git
 ```
+
+## :arrow_down: How to Use
+
+### Using Visual Studio Code:
+
+- `Creating the Database`: after cloning the repository navigate to the `Parking.WebAPI` project using the terminal and, run the command `dotnet ef database update --context ApplicationDbContext` to restore the database with yours tables.
+- `Restoring the IdentityDbContext`: after cloning the repository navigate to the `Parking.WebAPI` project using the terminal and, run the command `dotnet ef database update --context IdentityApplicationDbContext` to restore the Identity tables.
+- `Using Docker`: navigate to the root folder of the project and run the `docker-compose up --build` command to create all the elements related to the Docker configuration.
+
+### Using Visual Studio:
+
+- `Creating the database`: after cloning the repository go to `Tools` and open the `Package Manager Console` selecting the `Parking.WebAPI` project and run the `Update-Database -Context ApplicationDbContext` command to restore the database with yours tables.
+- `Restore the IdentityDbContext`: navigate to the `Parking.WebAPI` project using the terminal, then run the command `Update-Database -Context IdentityApplicationDbContext` to restore the Identity tables.
+- `Using Docker`: the `Visual Studio` can restore the `Docker` settings automatically, if you prefer you can perform the process mentioned above. 
+
+### Scripts Database:
+
+- `Updating ConnectionString`: change your ConnectionStrings in `appsettings.json` and `ApplicationDbContext` to `Server=sqlserver;Database=Parking;User=sa;Password=your_password; TrustServerCertificate=True` 
+
+- `Creating a Containerized Database`: after restoring the images and containers related to the application in `Docker`, go to `SQL Server` and create a database `Parking`, then run the scripts 
+[ApplicationDbContext.sql](https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Scripts/ApplicationDbContext.sql) 
+and [IdentityApplicationDbContext.sql](https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Scripts/IdentityApplicationDbContext.sql) to mount all the tables.  
+
+## Database diagram
+
+<p align="center"> <img src="https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Images/screenshot1.png" /></p>
+
+## WebAPI
+
+<p align="center"> <img src="https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Images/screenshot2.png" /></p>
 
 ## :boy: Author
 
