@@ -35,7 +35,6 @@ public class VehicleDTO
     public int? VehicleYear { get; set; }
 
     [MaxLength(200)]
-    [MinLength(1, ErrorMessage = "Notes must be at least 1 character long")]
     [Display(Name = "Notes")]
     public string? Notes { get; set; }
 
