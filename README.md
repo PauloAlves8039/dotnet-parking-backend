@@ -4,6 +4,7 @@
   <a href="https://learn.microsoft.com/pt-br/dotnet/"><img alt="DotNet 6" src="https://img.shields.io/badge/.NET-5C2D91?logo=.net&logoColor=white&style=for-the-badge" /></a>
   <a href="https://learn.microsoft.com/pt-br/dotnet/csharp/programming-guide/"><img alt="C#" src="https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white&style=for-the-badge" /></a>
   <a href="https://www.microsoft.com/pt-br/sql-server/sql-server-downloads"><img alt="SQL Server" src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white" /></a>
+  <a href="https://www.docker.com/"><img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" /></a>
 </p>
 
 ## :computer: Project
@@ -82,11 +83,11 @@ git clone https://github.com/PauloAlves8039/dotnet-parking-backend.git
 [ApplicationDbContext.sql](https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Scripts/ApplicationDbContext.sql) 
 and [IdentityApplicationDbContext.sql](https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Scripts/IdentityApplicationDbContext.sql) to mount all the tables.  
 
-## Database diagram
+## :camera: Database Diagram
 
 <p align="center"> <img src="https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Images/screenshot1.png" /></p>
 
-## WebAPI
+## :camera: WebAPI
 
 <p align="center"> <img src="https://github.com/PauloAlves8039/dotnet-parking-backend/blob/master/src/Parking.WebAPI/Resources/Images/screenshot2.png" /></p>
 
