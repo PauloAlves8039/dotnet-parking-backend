@@ -32,6 +32,12 @@ public static class DependencyInjectionJWT
 
                  });
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("DeletePermission", policy =>
+                policy.RequireClaim("DeletePermission", "true"));
+        });
+
         return services;
     }
 }
