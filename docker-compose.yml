@@ -16,8 +16,9 @@ services:
       ACCEPT_EULA: 'Y'
       SA_PASSWORD: "abc,12345678"
     volumes:
-      - c:\dados\volumes\mssql:/var/opt/mssql3
+      - mssql_data:/var/opt/mssql
     ports:
       - '11433:1433'
-    expose:
-      - 1433
+
+volumes:
+  mssql_data:

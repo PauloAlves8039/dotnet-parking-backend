@@ -1,7 +1,0 @@
-services:
-  parking.webapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:8080
-    ports:
-      - "32033:8080"
